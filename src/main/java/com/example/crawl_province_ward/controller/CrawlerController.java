@@ -26,5 +26,15 @@ public class CrawlerController {
             return ResponseEntity.status(500).body("Lỗi: " + e.getMessage());
         }
     }
+
+    @PostMapping("/old-locations")
+    public ResponseEntity<String> crawlOldLocations() {
+        try {
+            wardCrawlerService.fetchAndSaveOldLocations();
+            return ResponseEntity.ok("Crawl dữ liệu tỉnh/huyện/xã cũ thành công!");
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Lỗi khi crawl dữ liệu: " + e.getMessage());
+        }
+    }
 }
 
